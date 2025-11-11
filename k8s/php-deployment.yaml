@@ -1,0 +1,37 @@
+# Deployment da aplicação PHP
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php
+spec:
+  # uma instância do app PHP
+  replicas: 1  
+  selector:
+    matchLabels:
+      app: php
+  template:
+    metadata:
+      labels:
+        app: php
+    spec:
+      containers:
+        - name: php
+          # imagem customizada que você criou
+          image: api_cep_php_mysql:v1
+          ports:
+            # Apache ou PHP embutido escutando na porta 80
+            - containerPort: 80  
+---
+# Service para expor o app PHP para fora do cluster (NodePort)
+apiVersion: v1
+kind: Service
+metadata:
+  name: php
+spec:
+  type: NodePort  # permite acesso via porta do host
+  ports:
+    - port: 80         # porta dentro do cluster
+      targetPort: 80   # porta do container
+      nodePort: 30080  # porta no host (mapeada via kind)
+  selector:
+    app: php  # conecta ao pod PHP pelo label

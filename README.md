@@ -1,5 +1,17 @@
              PASSOS PARA USAR A API LOCALMENTE
 
+1) `kind create cluster --name php-mysql-cluster --config k8s/kind-config.yaml`
+2) `kubectl cluster-info --context kind-php-mysql-cluster`
+3) `docker build -t api_cep_php_mysql:v1 -f Dockerfile . `
+4) `kind load docker-image api_cep_php_mysql:v1 --name php-mysql-cluster`
+5) `kubectl apply -f k8s/mysql-deployment.yaml`
+6) `kubectl apply -f k8s/php-deployment.yaml`
+
+
+
+
+
+
 1) Importe o Banco de Dados
 2) Inicialize o servidor do PHP: php -S 0.0.0.0:8000
 
