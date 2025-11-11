@@ -63,7 +63,10 @@ class EnderecoController extends Controller
     {
         try 
         {
+            //var_dump($_GET);
+
             $cep = parent::getIntFromUrl(isset($_GET['cep']) ? $_GET['cep'] : null);
+            //$cep = $_GET['cep'];
 
             $model = new EnderecoModel();
 

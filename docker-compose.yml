@@ -20,7 +20,7 @@ services:
       
       # Definindo o nome do banco de dados, criando-o automaticamente
       # quando o contêiner for iniciado pela primeira vez
-      MYSQL_DATABASE: db_biblioteca
+      MYSQL_DATABASE: busca_by_cep
       
       # Criando um usuário e senha para o banco de dados
       MYSQL_USER: user
